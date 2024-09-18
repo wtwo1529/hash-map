@@ -46,7 +46,15 @@ export default class HashMap {
     }
     let hash = this.hash(key);
     console.log(`key: ${key} hash: ${hash} `);
+
     if (this.arr[hash]) {
+      let currNode = this.arr[hash].headNode;
+      while (currNode) {
+        if (currNode.key == key) {
+          currNode.val = val;
+          return;
+        }
+      }
       this.arr[hash].append(key, val);
     } else {
       this.arr[hash] = new LinkedList(new Node(key, val));
